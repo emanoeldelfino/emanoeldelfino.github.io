@@ -2,7 +2,7 @@
 
 :root {
   --gray: rgb(133, 133, 133);
-  --typewriterSpeed: 6s;
+  --typewriterSpeed: 4s;
   --typewriterChars: 18;
 }
 
@@ -201,11 +201,11 @@ section#contact {
   align-items: center;
   gap: 15px;
   font-size: 20px;
-  transition: transform ease 10s;
+  transition: color 100ms ease;
 }
 
-#contact ul li:hover {
-  transform: translateY(-15px);
+#contact ul li a:hover {
+  color: white;
 }
 
 footer {
@@ -222,8 +222,6 @@ footer {
 
 footer p {
   text-align: center;
-  margin-bottom: 15px;
-
 }
 
 .project-tile {
@@ -257,6 +255,10 @@ footer p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
+}
+
+.bi {
+  font-size: 30px;
 }
 
 @media (max-width: 1600px) {
