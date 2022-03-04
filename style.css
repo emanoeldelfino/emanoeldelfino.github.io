@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Mono&family=Poppins:wght@400;700&display=swap');
+
+:root {
+  --gray: rgb(133, 133, 133);
+  --typewriterSpeed: 6s;
+  --typewriterChars: 18;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  position: fixed;
+  z-index: 999;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+#welcome-section {
+  height: 100vh;
+}
+
+#welcome-section, #contact {
+  background-color: var(--gray);
+}
+
+#projects {
+  background-color: black;
+}
+
+#welcome-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#welcome-section h1 {
+  font-family: 'Nova Mono', monospace;
+  position: relative;
+  font-size: 45px;
+  width: max-content;
+}
+
+#welcome-section h1::before, #welcome-section h1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+h1::before {
+  background: var(--gray);
+  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterChars)) 1s forwards;
+}
+
+h1::after {
+  width: .125em;
+  background: black;
+  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterChars)) 1s forwards, blink 750ms steps(var(--typewriterChars)) infinite;
+}
+
+#welcome-section h2 {
+  font-size: 30px;
+  color: rgb(255, 255, 255);
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 2s) forwards;
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  25% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.projects-section-header {
+  color: white;
+  margin-bottom: 100px;
+}
+
+.projects-section-header::before {
+  content: '';
+  width: 1000px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  position: relative;
+  top: -25px;
+}
+
+nav {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid white;
+  background-color: black;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+ul li a {
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+nav ul li {
+  height: 100%;
+  display: flex;
+}
+
+nav ul li a {
+  color: rgb(255, 255, 255);
+  height: 100%;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+nav#navbar ul li:hover {
+  text-shadow:
+    /* White glow */
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff;
+  background-color: gray;
+}
+
+section#projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 65px 15px;
+}
+
+.projects-section-header, #contact h2 {
+  font-size: 40px;
+  text-align: center;
+}
+
+section#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 65px 15px;
+}
+
+#contact ul li {
+  margin: 25px;
+}
+
+#contact ul li a {
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 20px;
+  transition: transform ease 10s;
+}
+
+#contact ul li:hover {
+  transform: translateY(-15px);
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray);
+  border-top: 1px solid white;
+}
+
+footer p {
+  text-align: center;
+  margin-bottom: 15px;
+
+}
+
+.project-tile {
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.project-tile a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-tile p {
+  text-align: center;
+  background-color: gray;
+  border-radius: 0 0 5px 5px;
+}
+
+.project-tile a img {
+  width: 500px;
+  max-height: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid gray;
+  border-radius: 5px 5px 0 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+@media (max-width: 1600px) {
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #projects {
+    height: 100%;
+  }
+}
+
+@media (max-width: 1150px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-tile {
+    width: 75vw;
+  }
+
+  .project-tile a img {
+    width: inherit;
+  }
+}
+
+@media (max-width: 500px) {
+  #welcome-section h1 {
+    font-size: 8vw;
+  }
+
+  #welcome-section h2 {
+    font-size: 7vw;
+  }
+
+  .projects-section-header {
+    margin-bottom: 50px;
+  }
+
+  .projects-section-header, #contact h2 {
+    font-size: 10vw;
+  }
+
+}
