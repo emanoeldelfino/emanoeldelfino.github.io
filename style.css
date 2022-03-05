@@ -3,7 +3,7 @@
 :root {
   --gray: rgb(133, 133, 133);
   --typewriterSpeed: 4s;
-  --typewriterChars: 18;
+  --typewriterChars: 17;
 }
 
 * {
@@ -31,32 +31,48 @@ section {
   align-items: center;
 }
 
-#welcome-section {
+.flag {
+  height: 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#about {
   height: 100vh;
 }
 
-#welcome-section, #contact {
+#about, #contact {
   background-color: var(--gray);
 }
 
 #projects {
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 15px;
 }
 
-#welcome-section {
+#about {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-#welcome-section h1 {
+#about h1 {
   font-family: 'Nova Mono', monospace;
   position: relative;
   font-size: 45px;
   width: max-content;
 }
 
-#welcome-section h1::before, #welcome-section h1::after {
+#about h1::before, #about h1::after {
   content: '';
   position: absolute;
   top: 0;
@@ -76,7 +92,7 @@ h1::after {
   animation: typewriter var(--typewriterSpeed) steps(var(--typewriterChars)) 1s forwards, blink 750ms steps(var(--typewriterChars)) infinite;
 }
 
-#welcome-section h2 {
+#about h2 {
   font-size: 30px;
   color: rgb(255, 255, 255);
   font-style: italic;
@@ -115,7 +131,7 @@ h1::after {
 
 .projects-section-header {
   color: white;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .projects-section-header::before {
@@ -171,13 +187,6 @@ nav#navbar ul li:hover {
   background-color: gray;
 }
 
-section#projects {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 65px 15px;
-}
-
 .projects-section-header, #contact h2 {
   font-size: 40px;
   text-align: center;
@@ -191,6 +200,10 @@ section#contact {
   padding: 65px 15px;
 }
 
+#contact ul {
+  display: flex;
+}
+
 #contact ul li {
   margin: 25px;
 }
@@ -201,11 +214,12 @@ section#contact {
   align-items: center;
   gap: 15px;
   font-size: 20px;
-  transition: color 100ms ease;
+  transition: all 250ms ease-in-out;
 }
 
 #contact ul li a:hover {
   color: white;
+  transform: scale(1.5);
 }
 
 footer {
@@ -286,11 +300,11 @@ footer p {
 }
 
 @media (max-width: 500px) {
-  #welcome-section h1 {
+  #about h1 {
     font-size: 8vw;
   }
 
-  #welcome-section h2 {
+  #about h2 {
     font-size: 7vw;
   }
 

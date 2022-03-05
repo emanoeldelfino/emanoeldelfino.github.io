@@ -1,0 +1,16 @@
+{
+  "about": "Sobre",
+  "projects": "Projetos",
+  "contact": "Contato",
+  "about-h1": "Olá, sou Emanoel.",
+  "about-h2": "um desenvolvedor web",
+  "projects-h2": "Alguns dos meus projetos",
+  "projects-p1": "Página de Tributo",
+  "projects-p2": "Formulário de Pesquisa",
+  "projects-p3": "Landing Page de um Produto",
+  "projects-p4": "Página de Documentação",
+  "projects-p5": "Calculadora",
+  "projects-p6": "Contador de Tempo",
+  "contact-h2": "Me contate!",
+  "footer": "&copy; Emanoel Delfino 2022. Todos os direitos reservados."
+}
