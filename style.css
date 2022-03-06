@@ -200,10 +200,6 @@ section#contact {
   padding: 65px 15px;
 }
 
-#contact ul {
-  display: flex;
-}
-
 #contact ul li {
   margin: 25px;
 }
@@ -219,7 +215,7 @@ section#contact {
 
 #contact ul li a:hover {
   color: white;
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 footer {
