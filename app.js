@@ -29,12 +29,12 @@ fetch("./language/en.json")
 })
 
 flagIcon.addEventListener("click", () => {
-  if (flagIcon.src.includes("br")) {
-    flagIcon.src = "images/us.svg";
+  if (flagIcon.src.includes("us")) {
+    flagIcon.src = "images/br.svg";
     lang = en;
     root.style.setProperty("--typewriterChars", 18);
   } else {
-    flagIcon.src = "images/br.svg";
+    flagIcon.src = "images/us.svg";
     lang = pt;
     root.style.setProperty("--typewriterChars", 17);
   }
