@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nova+Mono&family=Poppins:wght@400;700&display=swap');
 
 :root {
-  --gray: rgb(133, 133, 133);
+  --gray: rgb(48, 48, 48);
   --typewriterSpeed: 4s;
-  --typewriterChars: 17;
+  --typewriterChars: 0;
 }
 
 * {
@@ -16,13 +16,28 @@ html {
   scroll-behavior: smooth;
 }
 
-nav {
-  position: fixed;
-  z-index: 999;
-}
-
 body {
   font-family: 'Poppins', sans-serif;
+}
+
+header {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+}
+
+nav {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  
 }
 
 section {
@@ -31,16 +46,72 @@ section {
   align-items: center;
 }
 
-.flag {
-  height: 15px;
-  margin-left: 10px;
-  cursor: pointer;
+footer {
+  bottom: 0;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray);
+  border-top: 1px solid white;
 }
 
-#navbar {
+footer p {
+  text-align: center;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+ul li a {
+  text-decoration: none;
+}
+
+nav ul {
   display: flex;
-  justify-content: space-between;
+  height: 100%;
+}
+
+nav ul li {
+  height: 100%;
+  display: flex;
+}
+
+nav ul li a {
+  color: rgb(255, 255, 255);
+  height: 100%;
+  padding: 0 15px;
+  display: flex;
   align-items: center;
+}
+
+.flags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-left: 10px;
+}
+
+.flag {
+  height: 15px;
+  cursor: pointer;
+  height: 30px;
+  width: auto;
+}
+
+.flag:hover {
+  filter: brightness(.6);
+}
+
+.languages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 25px;
 }
 
 #about {
@@ -144,40 +215,6 @@ h1::after {
   top: -25px;
 }
 
-nav {
-  width: 100%;
-  height: 50px;
-  border-bottom: 1px solid white;
-  background-color: black;
-}
-
-ul li {
-  list-style-type: none;
-}
-
-ul li a {
-  text-decoration: none;
-}
-
-nav ul {
-  display: flex;
-  justify-content: flex-end;
-  height: 100%;
-}
-
-nav ul li {
-  height: 100%;
-  display: flex;
-}
-
-nav ul li a {
-  color: rgb(255, 255, 255);
-  height: 100%;
-  padding: 0 15px;
-  display: flex;
-  align-items: center;
-}
-
 nav#navbar ul li:hover {
   text-shadow:
     0 0 7px #fff,
@@ -223,22 +260,6 @@ section#contact {
   gap: 15px;
   font-size: 20px;
   transition: all 250ms ease-in-out;
-}
-
-footer {
-  bottom: 0;
-  width: 100%;
-  padding: 15px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--gray);
-  border-top: 1px solid white;
-}
-
-footer p {
-  text-align: center;
 }
 
 .project-tile {

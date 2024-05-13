@@ -2,8 +2,8 @@
   "about": "Sobre",
   "projects": "Projetos",
   "contact": "Contato",
-  "about-h1": "Olá, sou Emanoel.",
-  "about-h2": "um Desenvolvedor Full Stack",
+  "about-h1": "Olá, me chamo Emanoel.",
+  "about-h2": "Sou um Desenvolvedor Full Stack",
   "projects-h2": "Alguns dos meus projetos",
   "projects-p1": "Página de Tributo",
   "projects-p2": "Formulário de Pesquisa",
@@ -11,6 +11,5 @@
   "projects-p4": "Página de Documentação",
   "projects-p5": "Cronômetro",
   "projects-p6": "Frases",
-  "contact-h2": "Contate-me!",
-  "footer": "&copy; Emanoel Delfino 2022. Todos os direitos reservados."
+  "contact-h2": "Contate-me!"
 }
