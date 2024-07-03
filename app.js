@@ -65,3 +65,9 @@ fetch("./language/es.json")
 brazilFlagIcon.addEventListener("click", () => setLanguage(portugueseJson));
 unitedStatesFlagIcon.addEventListener("click", () => setLanguage(englishJson));
 spainFlagIcon.addEventListener("click", () => setLanguage(spanishJson));
+
+document.querySelector('.hamburger-menu').addEventListener('click', () => {
+  let navLinks = document.querySelector('.nav-links');
+
+  navLinks.style.display = navLinks.style.display === 'block' ? 'none' : 'block';
+});

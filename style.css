@@ -302,6 +302,14 @@ section#contact {
   font-size: 30px;
 }
 
+.hamburger-menu {
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+  padding: 15px;
+  display: none;
+}
+
 @media (max-width: 1600px) {
   .projects-grid {
     grid-template-columns: 1fr 1fr;
@@ -345,6 +353,32 @@ section#contact {
 
   .project-tile a img {
     height: 200px;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  nav ul {
+    margin-top: 100px;
+    position: absolute;
+    flex-direction: column;
+  }
+
+  nav ul li {
+    background-color: black;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  nav#navbar {
+    display: flex;
   }
 }
 
