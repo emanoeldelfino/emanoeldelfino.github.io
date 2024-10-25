@@ -1,4 +1,5 @@
 const jsonKeysWithTextSelector = {
+  "title": "title",
   "about": "a[href='#about']", 
   "projects": "a[href='#projects']", 
   "contact": "a[href='#contact']",
@@ -41,30 +42,46 @@ function setLanguage(languageJson) {
   })
 }
 
-fetch("./language/pt.json")
-  .then(response => response.json())
-  .then(json => {
-    portugueseJson = json;
-  })
-  .then(() => {
-    setLanguage(portugueseJson);
-  })
+let langJson = {};
 
-fetch("./language/en.json")
-  .then(response => response.json())
-  .then(json => {
-    englishJson = json;
-  })
+function getFlag(lang) {
+  switch(lang) {
+    case "pt":
+      return "br"
+    case "en":
+      return "us"
+    default:
+      return lang
+  }
+}
 
-fetch("./language/es.json")
-.then(response => response.json())
-.then(json => {
-  spanishJson = json;
+const hash = window.location.hash;
+
+let language = "pt";
+
+if (hash === "#/es") {
+  language = "es";
+} else if (hash === "#/en") {
+  language = "en";
+}
+
+["pt", "en", "es"].forEach((lang) => {
+  fetch(`./language/${lang}.json`)
+    .then(response => response.json())
+    .then(json => {
+      langJson[lang] = json;
+    })
+    .then(() => {
+      if (lang === language)
+        setLanguage(langJson[lang])
+    });
+
+  let flag = getFlag(lang)
+
+  let flagIcon = document.querySelector(`.${flag}-flag`);
+
+  flagIcon.addEventListener("click", () => setLanguage(langJson[lang]));
 })
-
-brazilFlagIcon.addEventListener("click", () => setLanguage(portugueseJson));
-unitedStatesFlagIcon.addEventListener("click", () => setLanguage(englishJson));
-spainFlagIcon.addEventListener("click", () => setLanguage(spanishJson));
 
 document.querySelector('.hamburger-menu').addEventListener('click', () => {
   let navLinks = document.querySelector('.nav-links');
