@@ -36,13 +36,8 @@ function setLanguage(languageJson, langCode) {
   });
 
   if (window.projectsConfig) {
-    const projectTitles = document.querySelectorAll('.project-tile p');
-    projectTitles.forEach((p, index) => {
-      const proj = window.projectsConfig[index];
-      if (proj && proj.title[langCode]) {
-        p.textContent = proj.title[langCode];
-      }
-    });
+    // Projects are dynamically loaded, so titles now come from fetched HTML
+    // Translation logic is not applied here anymore since titles use the raw document <title>
   }
 }
 
@@ -107,30 +102,64 @@ loadAndSetLanguage(language);
 // Fetch projects config and render HTML blocks dynamically
 fetch('./projects.json')
   .then(response => response.json())
-  .then(projects => {
-    window.projectsConfig = projects;
+  .then(projectLinks => {
+    window.projectsConfig = projectLinks;
 
     const projectsGrid = document.querySelector('.projects-grid');
     projectsGrid.innerHTML = '';
 
-    projects.forEach(project => {
+    projectLinks.forEach(projectLink => {
       const tile = document.createElement('div');
       tile.className = 'project-tile';
 
       const link = document.createElement('a');
-      link.href = project.link;
+      link.href = projectLink;
       link.target = '_blank';
 
       const img = document.createElement('img');
-      img.src = project.image;
-      img.alt = project.alt;
+      img.alt = "Loading Project Image...";
+      // Fallback service placeholder until we resolve og:image
+      img.src = `https://api.microlink.io/?url=${encodeURIComponent(projectLink)}&screenshot=true&meta=false&embed=screenshot.url`;
 
-      const p = document.createElement('p');
+      const paragraph = document.createElement('p');
+      paragraph.textContent = "Loading...";
 
       link.appendChild(img);
-      link.appendChild(p);
+      link.appendChild(paragraph);
       tile.appendChild(link);
       projectsGrid.appendChild(tile);
+
+      // Dynamically fetch the project's HTML to extract title and og:image
+      fetch(projectLink)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          // 1. Extract Title
+          const titleElement = doc.querySelector('title');
+          if (titleElement) {
+            paragraph.textContent = titleElement.textContent;
+          } else {
+            paragraph.textContent = projectLink.split('/').pop(); // fallback to path
+          }
+
+          // 2. Extract og:image
+          const ogImageElement = doc.querySelector('meta[property="og:image"]');
+          if (ogImageElement && ogImageElement.content) {
+            // Overwrite microlink screenshot with native OG image
+            let imgUrl = ogImageElement.content;
+            if (!imgUrl.startsWith("http")) {
+              imgUrl = `${projectLink.replace(/\/$/, '')}/${imgUrl.replace(/^\//, '')}`;
+            }
+            img.src = imgUrl;
+            img.alt = paragraph.textContent;
+          }
+        })
+        .catch(err => {
+          console.error(`Failed to fetch metadata for ${projectLink}:`, err);
+          paragraph.textContent = projectLink.split('/').pop(); // fallback title
+        });
     });
 
     if (selectedLanguageJson) {
