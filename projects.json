@@ -1,0 +1,68 @@
+[
+  {
+    "id": "tribute-page",
+    "link": "https://emanoeldelfino.github.io/avicii-tribute-page",
+    "image": "./images/tribute-page.png",
+    "alt": "Avicii Tribute Page Project",
+    "title": {
+      "pt": "Página de Tributo",
+      "en": "Tribute Page",
+      "es": "Página de Tributo"
+    }
+  },
+  {
+    "id": "survey-form",
+    "link": "https://emanoeldelfino.github.io/e-commerce-survey",
+    "image": "./images/survey-form.png",
+    "alt": "Survey Form Project",
+    "title": {
+      "pt": "Formulário de Pesquisa",
+      "en": "Survey Form",
+      "es": "Formulario de Encuesta"
+    }
+  },
+  {
+    "id": "landing-page",
+    "link": "https://emanoeldelfino.github.io/sita-landing-page",
+    "image": "./images/product-landing-page.png",
+    "alt": "Product Landing Page Project",
+    "title": {
+      "pt": "Landing Page de um Produto",
+      "en": "Product Landing Page",
+      "es": "Landing Page de un Producto"
+    }
+  },
+  {
+    "id": "documentation-page",
+    "link": "https://emanoeldelfino.github.io/go-docs",
+    "image": "./images/documentation-page.png",
+    "alt": "Documentation Page Project",
+    "title": {
+      "pt": "Página de Documentação",
+      "en": "Documentation Page",
+      "es": "Página de Documentación"
+    }
+  },
+  {
+    "id": "stopwatch",
+    "link": "https://emanoeldelfino.github.io/stopwatch",
+    "image": "./images/stopwatch.png",
+    "alt": "Stopwatch Project",
+    "title": {
+      "pt": "Cronômetro",
+      "en": "Stopwatch",
+      "es": "Cronógrafo"
+    }
+  },
+  {
+    "id": "quotes",
+    "link": "https://emanoeldelfino.github.io/quotes",
+    "image": "./images/quotes.png",
+    "alt": "Quotes Project",
+    "title": {
+      "pt": "Frases",
+      "en": "Quotes",
+      "es": "Citas"
+    }
+  }
+]

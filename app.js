@@ -6,12 +6,6 @@ const jsonKeysWithTextSelector = {
   "about-h1": "#about h1",
   "about-h2": "#about h2",
   "projects-h2": "#projects h2",
-  "projects-p1": ".project-tile:nth-child(1) p",
-  "projects-p2": ".project-tile:nth-child(2) p",
-  "projects-p3": ".project-tile:nth-child(3) p",
-  "projects-p4": ".project-tile:nth-child(4) p",
-  "projects-p5": ".project-tile:nth-child(5) p",
-  "projects-p6": ".project-tile:nth-child(6) p",
   "contact-h2": "#contact h2"
 };
 
@@ -26,7 +20,7 @@ const documentRoot = document.documentElement;
 
 let selectedLanguageJson;
 
-function setLanguage(languageJson) {
+function setLanguage(languageJson, langCode) {
   if (selectedLanguageJson === languageJson)
     return;
 
@@ -39,7 +33,17 @@ function setLanguage(languageJson) {
       return;
 
     item.selector.innerHTML = languageJson[item.jsonKey];
-  })
+  });
+
+  if (window.projectsConfig) {
+    const projectTitles = document.querySelectorAll('.project-tile p');
+    projectTitles.forEach((p, index) => {
+      const proj = window.projectsConfig[index];
+      if (proj && proj.title[langCode]) {
+        p.textContent = proj.title[langCode];
+      }
+    });
+  }
 }
 
 let langJson = {};
@@ -67,7 +71,7 @@ if (hash === "#/es") {
 
 function loadAndSetLanguage(lang) {
   if (langJson[lang]) {
-    setLanguage(langJson[lang]);
+    setLanguage(langJson[lang], lang);
     window.location.hash = `#/${lang}`;
     return;
   }
@@ -76,7 +80,7 @@ function loadAndSetLanguage(lang) {
     .then(response => response.json())
     .then(json => {
       langJson[lang] = json;
-      setLanguage(langJson[lang]);
+      setLanguage(langJson[lang], lang);
       window.location.hash = `#/${lang}`;
     })
     .catch((error) => {
@@ -99,6 +103,44 @@ loadAndSetLanguage(language);
     loadAndSetLanguage(lang);
   });
 });
+
+// Fetch projects config and render HTML blocks dynamically
+fetch('./projects.json')
+  .then(response => response.json())
+  .then(projects => {
+    window.projectsConfig = projects;
+
+    const projectsGrid = document.querySelector('.projects-grid');
+    projectsGrid.innerHTML = '';
+
+    projects.forEach(project => {
+      const tile = document.createElement('div');
+      tile.className = 'project-tile';
+
+      const link = document.createElement('a');
+      link.href = project.link;
+      link.target = '_blank';
+
+      const img = document.createElement('img');
+      img.src = project.image;
+      img.alt = project.alt;
+
+      const p = document.createElement('p');
+
+      link.appendChild(img);
+      link.appendChild(p);
+      tile.appendChild(link);
+      projectsGrid.appendChild(tile);
+    });
+
+    if (selectedLanguageJson) {
+      const currentLang = Object.keys(langJson).find(key => langJson[key] === selectedLanguageJson);
+      const savedLangJson = selectedLanguageJson;
+      selectedLanguageJson = null;
+      setLanguage(savedLangJson, currentLang);
+    }
+  })
+  .catch(error => console.error('Error loading projects:', error));
 
 document.querySelector('.hamburger-menu').addEventListener('click', () => {
   let navLinks = document.querySelector('.nav-links');
