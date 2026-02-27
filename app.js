@@ -65,32 +65,40 @@ if (hash === "#/es") {
   language = "en";
 }
 
-["pt", "en", "es"].forEach((lang) => {
+function loadAndSetLanguage(lang) {
+  if (langJson[lang]) {
+    setLanguage(langJson[lang]);
+    window.location.hash = `#/${lang}`;
+    return;
+  }
+
   fetch(`./language/${lang}.json`)
     .then(response => response.json())
     .then(json => {
       langJson[lang] = json;
-    })
-    .then(() => {
-      if (lang === language)
-        setLanguage(langJson[lang])
+      setLanguage(langJson[lang]);
+      window.location.hash = `#/${lang}`;
     })
     .catch((error) => {
       console.error(`Could not load ${lang}.json file:`, error);
     });
+}
 
-  let flag = getFlag(lang)
+// Load initial language
+loadAndSetLanguage(language);
 
+// Set up event listeners for flags
+["pt", "en", "es"].forEach((lang) => {
+  let flag = getFlag(lang);
   let flagIcon = document.querySelector(`.${flag}-flag`);
 
   if (flagIcon === null)
     return;
 
   flagIcon.addEventListener("click", () => {
-    setLanguage(langJson[lang]);
-    window.location.hash = `#/${lang}`;
+    loadAndSetLanguage(lang);
   });
-})
+});
 
 document.querySelector('.hamburger-menu').addEventListener('click', () => {
   let navLinks = document.querySelector('.nav-links');
