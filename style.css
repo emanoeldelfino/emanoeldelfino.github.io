@@ -319,6 +319,7 @@ section#contact {
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
 .project-tile p {
@@ -328,13 +329,17 @@ section#contact {
   font-size: 18px;
   letter-spacing: 0.5px;
   background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-  margin-top: -50px;
-  position: relative;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   z-index: 10;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .project-tile a img {
+  display: block;
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
