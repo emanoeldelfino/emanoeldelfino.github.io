@@ -176,32 +176,26 @@ footer a {
   font-family: 'Nova Mono', monospace;
   position: relative;
   font-size: 55px;
-  width: max-content;
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
   background: linear-gradient(90deg, #fff 0%, var(--accent-color) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterChars)) 1s forwards;
+  margin: 0 auto;
 }
 
-#about h1::before,
 #about h1::after {
   content: '';
   position: absolute;
-  top: 0;
   right: 0;
+  top: 0;
   bottom: 0;
-  left: 0;
-}
-
-h1::before {
-  background: var(--gray);
-  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterChars)) 1s forwards;
-}
-
-h1::after {
   width: .125em;
-  background: black;
-  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterChars)) 1s forwards, blink 750ms steps(var(--typewriterChars)) infinite;
+  background: var(--accent-color);
+  animation: blink 750ms steps(var(--typewriterChars)) infinite;
 }
 
 #about h2 {
@@ -216,7 +210,7 @@ h1::after {
 
 @keyframes typewriter {
   to {
-    left: 100%;
+    width: calc(var(--typewriterChars) * 1ch);
   }
 }
 
