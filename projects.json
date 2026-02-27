@@ -1,6 +1,5 @@
 [
   {
-    "id": "tribute-page",
     "link": "https://emanoeldelfino.github.io/avicii-tribute-page",
     "image": "./images/tribute-page.png",
     "alt": "Avicii Tribute Page Project",
@@ -11,7 +10,6 @@
     }
   },
   {
-    "id": "survey-form",
     "link": "https://emanoeldelfino.github.io/e-commerce-survey",
     "image": "./images/survey-form.png",
     "alt": "Survey Form Project",
@@ -22,7 +20,6 @@
     }
   },
   {
-    "id": "landing-page",
     "link": "https://emanoeldelfino.github.io/sita-landing-page",
     "image": "./images/product-landing-page.png",
     "alt": "Product Landing Page Project",
@@ -33,7 +30,6 @@
     }
   },
   {
-    "id": "documentation-page",
     "link": "https://emanoeldelfino.github.io/go-docs",
     "image": "./images/documentation-page.png",
     "alt": "Documentation Page Project",
@@ -44,7 +40,6 @@
     }
   },
   {
-    "id": "stopwatch",
     "link": "https://emanoeldelfino.github.io/stopwatch",
     "image": "./images/stopwatch.png",
     "alt": "Stopwatch Project",
@@ -55,7 +50,6 @@
     }
   },
   {
-    "id": "quotes",
     "link": "https://emanoeldelfino.github.io/quotes",
     "image": "./images/quotes.png",
     "alt": "Quotes Project",
