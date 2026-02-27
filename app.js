@@ -1,17 +1,17 @@
 const jsonKeysWithTextSelector = {
   "title": "title",
-  "about": "a[href='#about']", 
-  "projects": "a[href='#projects']", 
+  "about": "a[href='#about']",
+  "projects": "a[href='#projects']",
   "contact": "a[href='#contact']",
-  "about-h1": "#about h1", 
-  "about-h2": "#about h2", 
-  "projects-h2": "#projects h2", 
+  "about-h1": "#about h1",
+  "about-h2": "#about h2",
+  "projects-h2": "#projects h2",
   "projects-p1": ".project-tile:nth-child(1) p",
-  "projects-p2": ".project-tile:nth-child(2) p", 
-  "projects-p3": ".project-tile:nth-child(3) p", 
-  "projects-p4": ".project-tile:nth-child(4) p", 
-  "projects-p5":".project-tile:nth-child(5) p", 
-  "projects-p6": ".project-tile:nth-child(6) p", 
+  "projects-p2": ".project-tile:nth-child(2) p",
+  "projects-p3": ".project-tile:nth-child(3) p",
+  "projects-p4": ".project-tile:nth-child(4) p",
+  "projects-p5": ".project-tile:nth-child(5) p",
+  "projects-p6": ".project-tile:nth-child(6) p",
   "contact-h2": "#contact h2"
 };
 
@@ -22,12 +22,9 @@ const jsonKeysWithSelector = Object.entries(jsonKeysWithTextSelector).map(([json
   };
 });
 
-const brazilFlagIcon = document.querySelector(".br-flag");
-const unitedStatesFlagIcon = document.querySelector(".us-flag");
-const spainFlagIcon = document.querySelector(".es-flag");
 const documentRoot = document.documentElement;
 
-let portugueseJson, englishJson, spanishJson, selectedLanguageJson;
+let selectedLanguageJson;
 
 function setLanguage(languageJson) {
   if (selectedLanguageJson === languageJson)
@@ -38,6 +35,9 @@ function setLanguage(languageJson) {
   documentRoot.style.setProperty("--typewriterChars", languageJson["about-h1"].length);
 
   jsonKeysWithSelector.forEach((item) => {
+    if (item.selector === null)
+      return;
+
     item.selector.innerHTML = languageJson[item.jsonKey];
   })
 }
@@ -45,7 +45,7 @@ function setLanguage(languageJson) {
 let langJson = {};
 
 function getFlag(lang) {
-  switch(lang) {
+  switch (lang) {
     case "pt":
       return "br"
     case "en":
@@ -74,13 +74,22 @@ if (hash === "#/es") {
     .then(() => {
       if (lang === language)
         setLanguage(langJson[lang])
+    })
+    .catch((error) => {
+      console.error(`Could not load ${lang}.json file:`, error);
     });
 
   let flag = getFlag(lang)
 
   let flagIcon = document.querySelector(`.${flag}-flag`);
 
-  flagIcon.addEventListener("click", () => setLanguage(langJson[lang]));
+  if (flagIcon === null)
+    return;
+
+  flagIcon.addEventListener("click", () => {
+    setLanguage(langJson[lang]);
+    window.location.hash = `#/${lang}`;
+  });
 })
 
 document.querySelector('.hamburger-menu').addEventListener('click', () => {
