@@ -183,10 +183,13 @@ fetch('./technologies.json')
     technologies.forEach(tech => {
       const card = document.createElement('div');
       card.className = 'tech-card';
+      card.setAttribute('title', tech.name);
 
       if (tech.icon) {
         const icon = document.createElement('i');
         icon.className = tech.icon;
+        icon.setAttribute('aria-label', tech.name);
+        icon.setAttribute('role', 'img');
         card.appendChild(icon);
       } else if (tech.img) {
         const img = document.createElement('img');
@@ -194,10 +197,11 @@ fetch('./technologies.json')
         img.alt = tech.name;
         if (tech.invert) img.style.filter = 'invert(1)';
         card.appendChild(img);
-      } else if (tech.text) {
+      } else {
         const textEl = document.createElement('span');
         textEl.className = 'tech-text';
-        textEl.textContent = tech.text;
+        textEl.textContent = tech.name;
+        textEl.setAttribute('aria-label', tech.name);
         card.appendChild(textEl);
       }
 
