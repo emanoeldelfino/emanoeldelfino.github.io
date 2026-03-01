@@ -1,0 +1,38 @@
+[
+    {
+        "name": "HTML",
+        "icon": "bi bi-filetype-html"
+    },
+    {
+        "name": "CSS",
+        "icon": "bi bi-filetype-css"
+    },
+    {
+        "name": "JavaScript",
+        "icon": "bi bi-filetype-js"
+    },
+    {
+        "name": "SQL Server",
+        "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mssql/mssql-plain.svg"
+    },
+    {
+        "name": "Git",
+        "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain.svg"
+    },
+    {
+        "name": "Linux",
+        "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-plain.svg"
+    },
+    {
+        "name": "C#",
+        "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-plain.svg"
+    },
+    {
+        "name": "jQuery",
+        "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-plain.svg"
+    },
+    {
+        "name": "Apriso",
+        "text": "APRISO"
+    }
+]

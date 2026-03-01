@@ -1,10 +1,12 @@
 {
   "title": "Emanoel Delfino | Desarrollador Full Stack",
   "about": "Sobre",
+  "technologies": "Tecnologías",
   "projects": "Proyectos",
   "contact": "Contacto",
   "about-h1": "Hola, soy Emanoel",
   "about-h2": "un Desarrollador Full Stack",
+  "technologies-h2": "Tecnologías que domino",
   "projects-h2": "Algunos de mis proyectos",
   "contact-h2": "Contáctame!"
 }

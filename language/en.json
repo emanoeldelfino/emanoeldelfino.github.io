@@ -1,10 +1,12 @@
 {
   "title": "Emanoel Delfino | Full Stack Developer",
   "about": "About",
+  "technologies": "Technologies",
   "projects": "Projects",
   "contact": "Contact",
   "about-h1": "Hello, I am Emanoel",
   "about-h2": "a Full Stack Developer",
+  "technologies-h2": "Technologies I master",
   "projects-h2": "Some of my projects",
   "contact-h2": "Contact me!"
 }

@@ -1,10 +1,12 @@
 const jsonKeysWithTextSelector = {
   "title": "title",
   "about": "a[href='#about']",
+  "technologies": "a[href='#technologies']",
   "projects": "a[href='#projects']",
   "contact": "a[href='#contact']",
   "about-h1": "#about h1",
   "about-h2": "#about h2",
+  "technologies-h2": "#technologies-h2",
   "projects-h2": "#projects h2",
   "contact-h2": "#contact h2"
 };
@@ -170,6 +172,43 @@ fetch('./projects.json')
     }
   })
   .catch(error => console.error('Error loading projects:', error));
+
+// Fetch technologies config and render cards dynamically
+fetch('./technologies.json')
+  .then(response => response.json())
+  .then(technologies => {
+    const techGrid = document.querySelector('.tech-grid');
+    techGrid.innerHTML = '';
+
+    technologies.forEach(tech => {
+      const card = document.createElement('div');
+      card.className = 'tech-card';
+
+      if (tech.icon) {
+        const icon = document.createElement('i');
+        icon.className = tech.icon;
+        card.appendChild(icon);
+      } else if (tech.img) {
+        const img = document.createElement('img');
+        img.src = tech.img;
+        img.alt = tech.name;
+        if (tech.invert) img.style.filter = 'invert(1)';
+        card.appendChild(img);
+      } else if (tech.text) {
+        const textEl = document.createElement('span');
+        textEl.className = 'tech-text';
+        textEl.textContent = tech.text;
+        card.appendChild(textEl);
+      }
+
+      const label = document.createElement('span');
+      label.textContent = tech.name;
+      card.appendChild(label);
+
+      techGrid.appendChild(card);
+    });
+  })
+  .catch(error => console.error('Error loading technologies:', error));
 
 document.querySelector('.hamburger-menu').addEventListener('click', () => {
   let navLinks = document.querySelector('.nav-links');

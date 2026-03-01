@@ -161,7 +161,8 @@ footer a {
 
 #about,
 #contact,
-#projects {
+#projects,
+#technologies {
   background: transparent;
 }
 
@@ -235,6 +236,25 @@ footer a {
   }
 }
 
+.section-header {
+  color: white;
+  margin-bottom: 60px;
+  font-size: 45px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.section-header::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--accent-color);
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
 .projects-section-header {
   color: white;
   margin-bottom: 60px;
@@ -252,6 +272,88 @@ footer a {
   background: var(--accent-color);
   margin: 15px auto 0;
   border-radius: 2px;
+}
+
+#technologies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  width: 100%;
+}
+
+.tech-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 28px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: default;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.tech-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.25);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.tech-card i {
+  font-size: 48px;
+  color: var(--accent-color);
+  transition: filter 0.3s ease;
+}
+
+.tech-card:hover i {
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7));
+}
+
+.tech-card img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+.tech-card:hover img {
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+}
+
+.tech-card span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.tech-text {
+  font-family: 'Nova Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-color);
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #contact ul {
@@ -381,6 +483,16 @@ section#contact {
   .project-tile a img {
     width: inherit;
   }
+
+  .tech-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1150px) {
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 1150px) {
@@ -399,13 +511,19 @@ section#contact {
   }
 
   #about h2,
+  .section-header,
   .projects-section-header,
   #contact h2 {
     font-size: 25px;
   }
 
+  .section-header,
   .projects-section-header {
     margin-bottom: 50px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .project-tile {
