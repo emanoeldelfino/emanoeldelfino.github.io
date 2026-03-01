@@ -185,25 +185,30 @@ fetch('./technologies.json')
       card.className = 'tech-card';
       card.setAttribute('title', tech.name);
 
+      const iconWrapper = document.createElement('div');
+      iconWrapper.className = 'tech-icon-wrapper';
+
       if (tech.icon) {
         const icon = document.createElement('i');
         icon.className = tech.icon;
         icon.setAttribute('aria-label', tech.name);
         icon.setAttribute('role', 'img');
-        card.appendChild(icon);
+        iconWrapper.appendChild(icon);
       } else if (tech.img) {
         const img = document.createElement('img');
         img.src = tech.img;
         img.alt = tech.name;
         if (tech.invert) img.style.filter = 'invert(1)';
-        card.appendChild(img);
+        iconWrapper.appendChild(img);
       } else {
         const textEl = document.createElement('span');
         textEl.className = 'tech-text';
         textEl.textContent = tech.name;
         textEl.setAttribute('aria-label', tech.name);
-        card.appendChild(textEl);
+        iconWrapper.appendChild(textEl);
       }
+
+      card.appendChild(iconWrapper);
 
       const label = document.createElement('span');
       label.textContent = tech.name;
