@@ -8,7 +8,8 @@ const jsonKeysWithTextSelector = {
   "about-h2": "#about h2",
   "technologies-h2": "#technologies-h2",
   "projects-h2": "#projects h2",
-  "contact-h2": "#contact h2"
+  "contact-h2": "#contact h2",
+  "resume": ".resume-btn"
 };
 
 const jsonKeysWithSelector = Object.entries(jsonKeysWithTextSelector).map(([jsonKey, selectorText]) => {

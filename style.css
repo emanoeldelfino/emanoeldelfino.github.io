@@ -236,6 +236,33 @@ footer a {
   }
 }
 
+.resume-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(2rem);
+  animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 2.5s) forwards;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.resume-btn:hover {
+  background: var(--accent-color);
+  color: #0f172a;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  transform: translateY(-5px);
+}
+
 .section-header {
   color: white;
   margin-bottom: 60px;
