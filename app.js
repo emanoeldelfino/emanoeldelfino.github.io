@@ -29,8 +29,6 @@ function setLanguage(languageJson, langCode) {
 
   selectedLanguageJson = languageJson;
 
-  documentRoot.style.setProperty("--typewriterChars", languageJson["about-h1"].length);
-
   jsonKeysWithSelector.forEach((item) => {
     if (item.selector === null)
       return;
@@ -225,3 +223,32 @@ document.querySelector('.hamburger-menu').addEventListener('click', () => {
 
   navLinks.style.display = navLinks.style.display === 'block' ? 'none' : 'block';
 });
+
+// #2 — Scroll-driven reveal animations
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target); // fire once
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// #3 — Active nav link based on current section
+const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+const sections = document.querySelectorAll('main section');
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}, { threshold: 0.4 });
+
+sections.forEach(section => sectionObserver.observe(section));

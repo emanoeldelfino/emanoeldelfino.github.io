@@ -5,8 +5,6 @@
   --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
   --accent-color: #38bdf8;
   --card-bg: rgba(30, 41, 59, 0.7);
-  --typewriterSpeed: 4s;
-  --typewriterChars: 0;
 }
 
 * {
@@ -120,6 +118,14 @@ nav ul li a:hover::after {
   width: 60%;
 }
 
+nav ul li a.active {
+  color: var(--accent-color);
+}
+
+nav ul li a.active::after {
+  width: 60%;
+}
+
 footer a {
   color: cyan;
 }
@@ -133,14 +139,15 @@ footer a {
 }
 
 .flag {
-  height: 15px;
   cursor: pointer;
   height: 30px;
   width: auto;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .flag:hover {
-  filter: brightness(.6);
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
 }
 
 .languages {
@@ -157,6 +164,30 @@ footer a {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#about::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0.04) 45%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  animation: glowPulse 6s ease-in-out infinite;
+}
+
+#about h1,
+#about h2,
+#about .resume-btn {
+  position: relative;
+  z-index: 1;
 }
 
 #about,
@@ -175,28 +206,15 @@ footer a {
 
 #about h1 {
   font-family: 'Nova Mono', monospace;
-  position: relative;
   font-size: 55px;
-  width: 0;
-  white-space: nowrap;
-  overflow: hidden;
   background: linear-gradient(90deg, #fff 0%, var(--accent-color) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterChars)) 1s forwards;
   margin: 0 auto;
-}
-
-#about h1::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: .125em;
-  background: var(--accent-color);
-  animation: blink 750ms steps(var(--typewriterChars)) infinite;
+  opacity: 0;
+  transform: translateY(1.5rem);
+  animation: fadeInUp 0.7s ease 0.2s forwards;
 }
 
 #about h2 {
@@ -205,34 +223,28 @@ footer a {
   font-style: italic;
   font-weight: 400;
   opacity: 0;
-  transform: translateY(3rem);
-  animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 2s) forwards;
-}
-
-@keyframes typewriter {
-  to {
-    width: calc(var(--typewriterChars) * 1ch);
-  }
-}
-
-@keyframes blink {
-  25% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  75% {
-    opacity: 0.5;
-  }
+  transform: translateY(1.5rem);
+  animation: fadeInUp 0.7s ease 0.55s forwards;
 }
 
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, -55%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -55%) scale(1.08);
   }
 }
 
@@ -250,8 +262,8 @@ footer a {
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   opacity: 0;
-  transform: translateY(2rem);
-  animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 2.5s) forwards;
+  transform: translateY(1.5rem);
+  animation: fadeInUp 0.7s ease 0.9s forwards;
   cursor: pointer;
   text-decoration: none;
 }
@@ -282,24 +294,7 @@ footer a {
   border-radius: 2px;
 }
 
-.projects-section-header {
-  color: white;
-  margin-bottom: 60px;
-  font-size: 45px;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.projects-section-header::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: var(--accent-color);
-  margin: 15px auto 0;
-  border-radius: 2px;
-}
+/* .projects-section-header merged into .section-header */
 
 #technologies {
   display: flex;
@@ -498,6 +493,18 @@ section#contact {
 .bi {
   font-size: 30px;
   color: #cbd5e1;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hamburger-menu {
